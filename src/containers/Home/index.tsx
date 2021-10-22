@@ -2,7 +2,6 @@ import Button from '@material-ui/core/Button'
 import React, { FC } from 'react'
 
 const Home: FC = () => {
-	
 
 	return (
 		<div>
