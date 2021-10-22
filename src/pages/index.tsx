@@ -1,17 +1,6 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Button from '@material-ui/core/Button';
+import HomePage from "../containers/Home"
 
-const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <Button variant="contained" color="primary" onClick={() => alert("eita carai")}>
-        Hello World
-      </Button>
-    </div>
-  )
-}
+const Home: NextPage = () => <HomePage />
 
 export default Home
