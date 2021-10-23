@@ -29,7 +29,7 @@ const ButtonDefault: FC<IType> = ({
 	<button
 		className={`
 		block text-center text-white bg-primary-blue-light p-3 duration-300
-		rounded-sm hover:bg-primary-blue-dark w-full rounded-full relative h-12
+		rounded-full hover:bg-primary-blue-dark w-full relative h-12
 		${customBorder ? `border-2 border-${customBorder}` : ''}
 		${customBackground ? `bg-${customBackground}` : ''}
 		${loading ? 'cursor-wait' : ''}
