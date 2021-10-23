@@ -42,6 +42,7 @@ const InputDefault: FC<IInputDefault> = ({
 	maskChar = null,
 	defaultValue,
 	rows,
+	error,
 	...restProps
 }) => {
 	const handleClickIcon = (e: any) => {
@@ -120,7 +121,7 @@ const InputDefault: FC<IInputDefault> = ({
 					className={`
 					rounded px-4 py-2 mt-3 focus:outline-none bg-gray-100 w-full border border-gray-300
 					focus:ring-1 focus:ring-primary-blue-light focus:border-transparent
-					${errorMessage ? 'border-error' : ''}`}
+					${error ? 'border-error' : ''}`}
 				/>
 
 				{errorMessage && (
