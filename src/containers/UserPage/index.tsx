@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import Router, { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
 import CardRepositories from '../../components/CardRepositories';
-import { IRepository } from '../../interfaces/repository';
+import { IRepository } from '../../interfaces/Repository';
 import useGithubProfile from '../../context/hooks/github/profile/useGithubProfile';
 
 const UserPage: FC = () => {

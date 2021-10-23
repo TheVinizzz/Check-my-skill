@@ -1,6 +1,6 @@
 import React from 'react'
 import { IProfile } from '../../../../interfaces/Profile';
-import { IRepository } from '../../../../interfaces/repository';
+import { IRepository } from '../../../../interfaces/Repository';
 
 export interface UseGithubProfileReturn {
 	initialProfile: IProfile

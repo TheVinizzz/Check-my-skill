@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-import { SiJavascript } from 'react-icons/si';
-import { IRepository } from '../../interfaces/repository';
+import { IRepository } from '../../interfaces/Repository';
 
 type ICard = {
     keyString: string

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import router from 'next/router'
 
 import { UseGithubProfileReturn } from './interfaces'
-import { IRepository } from '../../../../interfaces/repository';
+import { IRepository } from '../../../../interfaces/Repository'
 
 export const GithubProfileContext =
 	createContext<UseGithubProfileReturn>({} as UseGithubProfileReturn)
