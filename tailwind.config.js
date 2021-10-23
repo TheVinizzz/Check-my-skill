@@ -39,11 +39,12 @@ module.exports = {
 			'neutral-blue': '#3F3356',
 			'neutral-gray': '#CED4DA',
 			'alert-green': '#3ECCA4',
-			error: '#FF647C',
+			error: '#ff4b66',
 			'gradient-blue': '#0575E6',
 			'gradient-green': '#02E95E',
 			'gradient-gray': '#FAFCFF',
-			"dark-default": "#000411"
+			"dark-default": "#000411",
+			"dark-secondary": "#2F3775"
 		},
 		spacing: {
 			px: '1px',
