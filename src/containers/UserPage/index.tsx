@@ -59,8 +59,8 @@ const UserPage: FC = () => {
 	}
 
 	return (
-		<div className='h-screen text-white py-10'>
-			<Container maxWidth='lg'>
+		<div className='h-screen text-white py-10 '>
+			<Container maxWidth='lg' className="pb-20">
 				<div>
 					{user && (
 						<>
