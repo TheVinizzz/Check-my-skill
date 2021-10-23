@@ -1,11 +1,10 @@
 import ButtonDefault from "../../components/ButtomDefault"
 import Image from 'next/image'
+import toast from 'react-hot-toast';
 import React, { FC, useState } from 'react'
 import Container from '@mui/material/Container';
-import axios from 'axios';
-import toast from 'react-hot-toast'
+import useGithubProfile from "../../context/hooks/github/profile/useGithubProfile"
 import InputDefault from "../../components/InputDefault";
-import router from 'next/router'
 
 const pattern = new RegExp('^(https?:\\/\\/)?'+
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
@@ -16,23 +15,19 @@ const pattern = new RegExp('^(https?:\\/\\/)?'+
 
 const Home: FC = () => {
     const [name, setName] = useState<string>("")
-    const [error, setError] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
 
-    const handleCallMyUser = async () => {
+    const {handleCallMyUser, error} = useGithubProfile()
+
+    const handleCallMyUserProfile = async () => {
         try {
-            const reg = pattern.test(name);
             setLoading(true)
-            setError(false)
-            if(!!reg) {
-              return toast.error(`Apenas o username do Github é valido`)  
-            } 
-            await axios.get(`https://api.github.com/users/${name}`)
+            const reg = pattern.test(name);
+            if(!!reg) return toast.error(`Apenas o username do Github é valido`) 
+            await handleCallMyUser(name)
             toast.success(`Usuário ${name} foi encontrado com sucesso`)
-            router.push(`/user/${name}`)
         }
         catch {
-            setError(true)
             toast.error(`O Usuário ${name} não foi encontrado`)
         }
         finally {
@@ -53,7 +48,7 @@ const Home: FC = () => {
 						alt="icon-spin"
 					/>}/>
                         <div className="w-32 mx-auto mt-10">
-                            <ButtonDefault id="button-search" loading={loading} onClick={handleCallMyUser}>Buscar</ButtonDefault>
+                            <ButtonDefault id="button-search" loading={loading} onClick={handleCallMyUserProfile}>Buscar</ButtonDefault>
                         </div>
 
                     </div>
