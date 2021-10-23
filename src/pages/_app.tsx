@@ -8,7 +8,7 @@ import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  useEffect(() => {
+	useEffect(() => {
 		const handleStart = (url: string) => {
 			NProgress.start()
 		}
@@ -30,18 +30,19 @@ function MyApp({ Component, pageProps }: AppProps) {
 		}
 	}, [Router])
 
-  return (
-    <>
-    <Head>
+	return (
+		<>
+			<Head>
 				<link rel="stylesheet" type="text/css" href="/nprogress.css" />
+				<script data-ad-client="ca-pub-2468919422804006" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<title>Minhas Habilidades</title>
 			</Head>
 
-    <>
-      <Toaster position="bottom-right" reverseOrder={false} />
-      <Component {...pageProps} />
-    </>
-    </>
-  )
+			<>
+				<Toaster position="bottom-right" reverseOrder={false} />
+				<Component {...pageProps} />
+			</>
+		</>
+	)
 }
 export default MyApp

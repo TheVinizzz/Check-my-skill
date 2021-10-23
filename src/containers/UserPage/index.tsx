@@ -73,7 +73,7 @@ const UserPage: FC = () => {
 										sx={{ width: 200, height: 200 }}
 									/>
 								</div>
-								<div className='md:self-center sm:ml-10 text-center md:text-left'>
+								<div className='md:self-center sm:ml-10 text-center md:text-left mt-2 md:mt-0'>
 									<h1 className='text-3xl font-bold'>
 										{user.name}
 									</h1>
