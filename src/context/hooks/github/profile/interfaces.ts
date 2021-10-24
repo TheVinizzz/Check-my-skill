@@ -1,4 +1,3 @@
-import React from 'react'
 import { IProfile } from '../../../../interfaces/Profile';
 import { IRepository } from '../../../../interfaces/Repository';
 
