@@ -51,7 +51,7 @@ const Home: FC = () => {
 	};
 
 	return (
-		<div className='h-screen text-white'>
+		<div className='overflow-hidden h-screen text-white'>
 			<Container maxWidth='lg' style={{ height: '100%' }}>
 				<div className='w-full flex justify-center h-full'>
 					<FormProvider {...methods}>
