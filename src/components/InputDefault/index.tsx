@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import Image from 'next/image'
 import React, { FC } from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 
 interface IInputDefault {
@@ -11,21 +13,17 @@ interface IInputDefault {
 	type?: string
 	getInput?: any
 	error?: boolean
+	rows?: number
 	isMandatory?: boolean
 	onChange?: any
-	maxLength?: number
+	maxLength?: string
 	colorLabel?: string
 	mask?: string
-	errorMessage?: string
 	maskChar?: string | null
-	rules?: any
 	defaultValue?: any
 	icon?: any
 	iconClick?: any
-	value?: any
-	rows?: number
 }
-
 const InputDefault: FC<IInputDefault> = ({
 	id,
 	name,
@@ -36,15 +34,17 @@ const InputDefault: FC<IInputDefault> = ({
 	isMandatory,
 	colorLabel,
 	mask = '',
-	icon,
-	iconClick,
-	errorMessage,
 	maskChar = null,
-	defaultValue,
+	defaultValue = '',
+	icon,
 	rows,
-	error,
-	...restProps
+	iconClick
 }) => {
+	const {
+		control,
+		formState: { errors }
+	} = useFormContext()
+
 	const handleClickIcon = (e: any) => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -56,34 +56,43 @@ const InputDefault: FC<IInputDefault> = ({
 	const renderField = () => {
 		if (rows) {
 			return (
-				<textarea
-					autoFocus
-					id={id}
-					rows={rows}
+				<Controller
+					name={name}
+					control={control}
+					render={({ field }) => (
+						<textarea
+							{...field}
+							rows={rows}
+							placeholder={placeholder}
+							className={`
+					rounded px-4 py-2 mt-3 focus:outline-none bg-gray-100 w-full border border-gray-300
+					focus:ring-1 focus:ring-primary-blue-light focus:border-transparent
+					${errors[name] ? 'border-error' : ''}`}
+						/>
+					)}
 					defaultValue={defaultValue}
-					className={`
-				rounded px-4 py-2 mt-3 bg-gray-100 w-full border border-gray-300
-				focus:outline-none focus:ring-1 focus:ring-primary-blue-light focus:border-transparent
-				${errorMessage ? 'border-error' : ''}
-			`}
-					placeholder={placeholder}
-					{...restProps}
 				/>
 			)
 		}
 		return (
-			<InputMask
-				{...restProps}
-				placeholder={placeholder}
-				type={type}
-				mask={mask}
-				alwaysShowMask={false}
-				maskChar={maskChar}
-				defaultValue={defaultValue}
-				className={`
+			<Controller
+				name={name}
+				control={control}
+				render={({ field }) => (
+					<InputMask
+						{...field}
+						placeholder={placeholder}
+						type={type}
+						mask={mask}
+						maskChar={maskChar}
+						alwaysShowMask={false}
+						className={`
 					rounded px-4 py-2 mt-3 focus:outline-none bg-gray-100 w-full border border-gray-300
 					focus:ring-1 focus:ring-primary-blue-light focus:border-transparent
-					${errorMessage ? 'border-error' : ''}`}
+					${errors[name] ? 'border-error' : ''}`}
+					/>
+				)}
+				defaultValue={defaultValue}
 			/>
 		)
 	}
@@ -110,22 +119,11 @@ const InputDefault: FC<IInputDefault> = ({
 						</button>
 					</div>
 				)}
-				<InputMask
-					{...restProps}
-					placeholder={placeholder}
-					type={type}
-					mask={mask}
-					alwaysShowMask={false}
-					maskChar={maskChar}
-					defaultValue={defaultValue}
-					className={`
-					rounded px-4 py-2 mt-3 focus:outline-none bg-gray-100 w-full border border-gray-300
-					focus:ring-1 focus:ring-primary-blue-light focus:border-transparent
-					${error ? 'border-error' : ''}`}
-				/>
-
-				{errorMessage && (
-					<span className="text-sm text-red-500">{errorMessage}</span>
+				{renderField()}
+				{errors[name] && (
+					<span className="text-sm text-red-500">
+						{errors[name].message}
+					</span>
 				)}
 			</div>
 		</div>
