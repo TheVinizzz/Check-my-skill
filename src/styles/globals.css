@@ -24,3 +24,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.animationFade {
+	@apply delay-500;
+	animation: fadeIn 1s both;
+}
+
+@keyframes fadeIn{
+	0% {opacity: 0; left: -200px;}
+	100% {opacity: 1; left: 0px}
+}
