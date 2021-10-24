@@ -1,20 +1,28 @@
-import ButtonDefault from '../../components/ButtomDefault';
 import React, { FC, useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
-import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import toast from 'react-hot-toast';
 import Router, { useRouter } from 'next/router';
 import CircularProgress from '@mui/material/CircularProgress';
-import CardRepositories from '../../components/CardRepositories';
-import { IRepository } from '../../interfaces/Repository';
 import useGithubProfile from '../../context/hooks/github/profile/useGithubProfile';
+import ListRepositories from './components/ListRepositories';
+import DetailsRepository from './components/DetailsRepository';
+
+export enum StageView {
+    LIST_REPOSITORIES,
+    DETAILS_REPOSOTIRIE
+}
+export interface IStage {
+    stage: StageView
+    nameRepository: string
+}
 
 const UserPage: FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
+    const [stagePage, setStagePage] = useState<IStage>({stage: StageView.LIST_REPOSITORIES} as IStage)
 
 	const {handleCallMyRepositories, handleCallMyUser, profile, error, repository} = useGithubProfile()
-
+    console.log("stage", stagePage)
 	const router = useRouter();
 	const { userRouter } = router.query;
 
@@ -39,6 +47,14 @@ const UserPage: FC = () => {
 			handleCallMyUserProfile();
 		}
 	}, [userRouter]);
+
+    const renderStage = (stage: number) => {
+        const listRender: any = {
+            0: <ListRepositories repositories={repository} select={(stage: IStage) => setStagePage(stage)}/>,
+            1: <DetailsRepository repository={stagePage?.nameRepository} select={() => setStagePage({stage: 0, nameRepository: ""})}/>
+        }
+        return listRender[stage]
+    }
 
 	if (loading) {
 		return (
@@ -81,13 +97,7 @@ const UserPage: FC = () => {
 									<p className='text-sm max-w-md mt-2'>{profile.bio}</p>
 								</div>
 							</div>
-							<div className='w-full bg-dark-secondary py-4 px-6 rounded shadow-lg animationFade'>
-								<div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4'>
-									{repository.map((repo: IRepository, i: number) => (
-										<CardRepositories keyString={`card-${i}`} repository={repo}/>
-									))}
-								</div>
-							</div>
+							{renderStage(stagePage.stage)}
 						</>
 					)}
 					{error && <h1>Verifique seu usuario</h1>}

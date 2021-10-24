@@ -8,4 +8,7 @@ export interface UseGithubProfileReturn {
     error: boolean
     handleCallMyUser: (userName: string) => Promise<void>
     handleCallMyRepositories: (userName: string) => Promise<void>
+    handleCallMyDetailsRepository: (userName: string, nameRepository: string) => Promise<void>
+    detailsRepository: IRepository
+    clearStateDetailsRepository: () => void
 }
