@@ -56,7 +56,7 @@ const UserPage: FC = () => {
 				<div>
 					{profile && (
 						<>
-							<div className='flex flex-col md:flex-row mb-10'>
+							<div className='flex flex-col md:flex-row mb-10 animationFade'>
 								<div className="self-center">
 									<Avatar
 										alt='avatar'
@@ -81,7 +81,7 @@ const UserPage: FC = () => {
 									<p className='text-sm max-w-md mt-2'>{profile.bio}</p>
 								</div>
 							</div>
-							<div className='w-full bg-dark-secondary py-4 px-6 rounded shadow-lg'>
+							<div className='w-full bg-dark-secondary py-4 px-6 rounded shadow-lg animationFade'>
 								<div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4'>
 									{repository.map((repo: IRepository, i: number) => (
 										<CardRepositories keyString={`card-${i}`} repository={repo}/>
