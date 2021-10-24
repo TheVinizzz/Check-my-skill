@@ -17,6 +17,7 @@ export const GithubProfileProvider: FC = ({ children }) => {
 	const [loading, setLoading] = useState(false)
 	const [profile, setProfile] = useState<IProfile>(INITIAL_PROFILE)
 	const [repository, setRepository] = useState<IRepository[]>([])
+	const [detailsRepository, setDetailsRepository] = useState<IRepository>({} as IRepository)
     const [error, setError] = useState<boolean>(false);
     
     const handleCallMyUser = async (userName: string) => {
@@ -50,6 +51,24 @@ export const GithubProfileProvider: FC = ({ children }) => {
         }
     }
 
+    const handleCallMyDetailsRepository = async (userName: string, nameRepository: string) => {
+        try {
+            const {data} = await axios.get(`https://api.github.com/repos/${userName}/${nameRepository}`)
+            setDetailsRepository(data as IRepository)
+        }
+        catch {
+            setError(true)
+            toast.error(`Repositorio não encontrado`)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    const clearStateDetailsRepository = () => {
+        setDetailsRepository({} as IRepository)
+    }
+
 	return (
 		<GithubProfileContext.Provider
 			value={{
@@ -58,7 +77,10 @@ export const GithubProfileProvider: FC = ({ children }) => {
                 handleCallMyRepositories,
                 error,
                 profile,
-                repository
+                repository,
+                handleCallMyDetailsRepository,
+                detailsRepository,
+                clearStateDetailsRepository
 			}}
 		>
 			{children}
