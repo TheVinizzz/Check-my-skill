@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
+import Image from 'next/image';
 import Avatar from '@mui/material/Avatar';
 import toast from 'react-hot-toast';
 import Router, { useRouter } from 'next/router';
@@ -7,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useGithubProfile from '../../context/hooks/github/profile/useGithubProfile';
 import ListRepositories from './components/ListRepositories';
 import DetailsRepository from './components/DetailsRepository';
+import LoadingPage from '../../components/LoadingPage';
 
 export enum StageView {
     LIST_REPOSITORIES,
@@ -22,12 +24,12 @@ const UserPage: FC = () => {
     const [stagePage, setStagePage] = useState<IStage>({stage: StageView.LIST_REPOSITORIES} as IStage)
 
 	const {handleCallMyRepositories, handleCallMyUser, profile, error, repository} = useGithubProfile()
-    console.log("stage", stagePage)
+    
 	const router = useRouter();
 	const { userRouter } = router.query;
 
 	const handleRedirect = () => {
-		router.push(`https://github.com/${userRouter}`);
+		window.open(`https://github.com/${userRouter}`, '_blank');
 	};
 
 	useEffect(() => {
@@ -40,7 +42,7 @@ const UserPage: FC = () => {
 					`O Usuário ${userRouter?.toString()} não foi encontrado`
 				);
 			} finally {
-				setLoading(false);
+				setTimeout(() => setLoading(false), 2000);
 			}
 		};
 		if (!!userRouter) {
@@ -60,7 +62,7 @@ const UserPage: FC = () => {
 		return (
 			<div className='h-screen text-white flex w-full justify-center'>
 				<div className='self-center'>
-					<CircularProgress color='inherit' />
+					<LoadingPage />
 				</div>
 			</div>
 		);
