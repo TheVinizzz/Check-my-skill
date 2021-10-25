@@ -25,12 +25,14 @@
     "react-hot-toast": "^2.1.1",
     "react-icons": "^4.3.1",
     "react-input-mask": "^2.0.4",
+    "react-lottie": "^1.2.3",
     "styled-components": "^5.3.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/nprogress": "^0.2.0",
     "@types/react": "17.0.31",
+    "@types/react-lottie": "^1.2.6",
     "autoprefixer": "^10.3.7",
     "eslint": "8.0.1",
     "eslint-config-next": "11.1.2",

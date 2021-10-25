@@ -1,7 +1,7 @@
-import { CircularProgress } from '@mui/material';
 import React, { FC, useState, useEffect } from 'react';
 import useGithubProfile from '../../../../context/hooks/github/profile/useGithubProfile';
 import { IoArrowBackSharp } from 'react-icons/io5';
+import LoadingPage from "../../../../components/LoadingPage"
 
 type IDetailsRepository = {
 	repository: string;
@@ -32,7 +32,7 @@ const DetailsRepository: FC<IDetailsRepository> = ({
 				await handleCallMyDetailsRepository(profile.login, repository);
 			} catch {
 			} finally {
-				setLoading(false);
+				setTimeout(() => setLoading(false), 2000);
 			}
 		};
 		if (!!repository && repository !== detailsRepository.name) {
@@ -43,7 +43,9 @@ const DetailsRepository: FC<IDetailsRepository> = ({
 	if (loading) {
 		return (
 			<div className='w-full bg-dark-secondary py-4 px-6 rounded shadow-lg animationFade flex justify-center h-52'>
-				<CircularProgress color='inherit' className='self-center' />
+                <div className="self-center">
+                    <LoadingPage />
+                </div>
 			</div>
 		);
 	}
