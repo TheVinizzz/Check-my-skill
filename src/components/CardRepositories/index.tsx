@@ -48,7 +48,7 @@ const CardRepositories: FC<ICard> = ({ repository, selectRepository }) => {
 				</div>
 				<div className="flex w-full justify-between">
 					<span className="flex text-xs text-gray-300">
-						<span className={`h-3 w-3 rounded-full bg-${selectColor()}-600 self-center mr-1`}></span>
+						<span className={`h-3 w-3 rounded-full bg-${selectColor()} self-center mr-1`}></span>
 						{repository.language}
 					</span>
 					<span className="text-xs text-gray-300">Criado em {moment(repository.created_at).format("DD/MM/YYYY")}</span>
