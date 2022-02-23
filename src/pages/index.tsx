@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import HomePage from "../containers/Home"
 import {GithubProfileProvider} from "../context/hooks/github/profile"
 

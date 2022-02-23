@@ -14,23 +14,23 @@ const CardRepositories: FC<ICard> = ({ repository, selectRepository }) => {
 
 	const selectColor = () => {
 		const colorLanguage: any = {
-			typescript: "blue",
-			javascript: "yellow",
-			python: "blue",
-			ruby: "red",
-			java: "yellow",
-			c: "purple",
-			"c++": "purple",
-			"c#": "purple",
-			php: "purple",
-			go: "purple",
-			swift: "green",
-			rust: "purple",
-			kotlin: "blue",
-			"objective-c": "blue",
-			html: "indigo",
-			null: "gray",
-			css: "pink",
+			typescript: "#165CAA",
+			javascript: "#F0DB4F",
+			python: "#165CAA",
+			ruby: "#F80102",
+			java: "#F0DB4F",
+			c: "#F7941E",
+			"c++": "#F7941E",
+			"c#": "#787CB5",
+			php: "#787CB5",
+			go: "#3EB049",
+			swift: "#F7941E",
+			rust: "#787CB5",
+			kotlin: "#165CAA",
+			"objective-c": "#165CAA",
+			html: "#F7941E",
+			null: "#FFFFFF",
+			css: "#F36AA0",
 		}
 		const selectColor = repository?.language?.toLowerCase() || ""
 		return colorLanguage[selectColor] || colorLanguage["null"]
@@ -48,8 +48,8 @@ const CardRepositories: FC<ICard> = ({ repository, selectRepository }) => {
 				</div>
 				<div className="flex w-full justify-between">
 					<span className="flex text-xs text-gray-300">
-						<span className={`h-3 w-3 rounded-full bg-${selectColor()} self-center mr-1`}></span>
-						{repository.language}
+						<span className={`h-3 w-3 rounded-full self-center mr-1`} style={{backgroundColor: selectColor()}}></span>
+						{repository.language || "Indefinido"}
 					</span>
 					<span className="text-xs text-gray-300">Criado em {moment(repository.created_at).format("DD/MM/YYYY")}</span>
 				</div>

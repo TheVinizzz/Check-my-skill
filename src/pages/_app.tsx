@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
-import Router, { useRouter } from 'next/router'
+import Router from 'next/router'
 import React, { useEffect } from 'react'
 import NProgress from 'nprogress'
 import Head from 'next/head'

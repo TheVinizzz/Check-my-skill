@@ -27,15 +27,15 @@ interface IUserForm {
     username: string
 }
 
-const Home: FC = () => {
+const Home: FC<any> = ({initial}) => {
     const [loading, setLoading] = useState<boolean>(false)
-
+	console.log(initial)
     const methods = useForm({ resolver: yupResolver(schema), mode: 'onBlur' })
     const { handleSubmit } = methods
 
 	const { handleCallMyUser, error } = useGithubProfile();
 
-	const handleCallMyUserProfile = async (data: IUserForm) => {
+	const handleCallMyUserProfile = async (data: any) => {
 		try {
 			setLoading(true)
 			const reg = pattern.test(data.username);
