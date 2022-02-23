@@ -24,6 +24,8 @@ const CardRepositories: FC<ICard> = ({ repository, selectRepository }) => {
 			"c#": "#787CB5",
 			php: "#787CB5",
 			go: "#3EB049",
+			vue: "#3EB049",
+			zil: "#72CFCD",
 			swift: "#F7941E",
 			rust: "#787CB5",
 			kotlin: "#165CAA",
